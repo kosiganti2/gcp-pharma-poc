@@ -1,0 +1,4 @@
+*.tfstate
+__pycache__/
+.env
+.idea/
