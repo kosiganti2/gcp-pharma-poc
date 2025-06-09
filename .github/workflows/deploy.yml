@@ -1,0 +1,22 @@
+name: Terraform Deploy
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  terraform:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Terraform
+        uses: hashicorp/setup-terraform@v2
+        with:
+          terraform_version: 1.5.0
+      - run: terraform init
+        working-directory: terraform
+      - run: terraform plan -var="project_id=pharma-poc-demo"
+        working-directory: terraform
+      - run: terraform apply -auto-approve -var="project_id=pharma-poc-demo"
+        working-directory: terraform
