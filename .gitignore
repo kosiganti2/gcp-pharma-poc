@@ -1,4 +1,5 @@
 *.tfstate
-__pycache__/
+*.tfstate.backup
 .env
+__pycache__/
 .idea/
