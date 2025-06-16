@@ -1,0 +1,11 @@
+ndc_number,labeler_name,product_name,generic_name,dosage_form,route,strength,unit_price,package_size,market_date
+12345-678-90,PharmaCorp Inc,Painaway Tablets,Ibuprofen,Tablet,Oral,200mg,0.15,100,2023-01-15
+23456-789-01,MediLab Solutions,Feverstop Capsules,Acetaminophen,Capsule,Oral,500mg,0.12,50,2023-02-20
+34567-890-12,HealthGen Pharma,Heartguard,Lisinopril,Tablet,Oral,10mg,0.25,30,2023-03-10
+45678-901-23,BioMed Corp,Diabecon,Metformin,Tablet,Oral,500mg,0.18,60,2023-04-05
+56789-012-34,Advanced Therapeutics,Cholestaway,Atorvastatin,Tablet,Oral,20mg,0.32,30,2023-05-12
+67890-123-45,Premium Drugs,Antacid Plus,Omeprazole,Capsule,Oral,20mg,0.28,14,2023-06-18
+78901-234-56,Global Pharma,Allerease,Loratadine,Tablet,Oral,10mg,0.22,30,2023-07-22
+89012-345-67,NextGen Medicine,Bloodpressure Pro,Amlodipine,Tablet,Oral,5mg,0.19,30,2023-08-14
+90123-456-78,Elite Pharmaceuticals,Anxiety Relief,Sertraline,Tablet,Oral,50mg,0.45,30,2023-09-08
+01234-567-89,Innovate Drugs,Muscle Relax,Cyclobenzaprine,Tablet,Oral,10mg,0.38,15,2023-10-03

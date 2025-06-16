@@ -1,5 +1,47 @@
+# Terraform
 *.tfstate
-*.tfstate.backup
-.env
+*.tfstate.*
+.terraform/
+.terraform.lock.hcl
+terraform.tfvars
+*.tfplan
+
+# Python
 __pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+.venv/
+pip-log.txt
+pip-delete-this-directory.txt
+
+# IDE
+.vscode/
 .idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Credentials
+*-key.json
+credentials.json
+service-account.json
+
+# Logs
+*.log
+logs/
+
+# Output
+output/
+temp/
+.temp/
+
+# Environment
+.env.local
+.env.production

@@ -1,0 +1,6 @@
+project_id           = "pharma-data-poc-1749887705"
+region              = "us-central1"
+zone                = "us-central1-a"
+environment         = "dev"
+enable_apis         = true
+deletion_protection = false

@@ -1,22 +1,77 @@
-name: Terraform Deploy
+name: Deploy GCP Data Pipeline
 
 on:
   push:
-    branches:
-      - main
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
 
+env:
+  PROJECT_ID: ${{ secrets.GCP_PROJECT_ID }}
+  GCP_SA_KEY: ${{ secrets.GCP_SA_KEY }}
+  
 jobs:
   terraform:
+    name: 'Terraform'
     runs-on: ubuntu-latest
+    
     steps:
-      - uses: actions/checkout@v2
-      - name: Set up Terraform
-        uses: hashicorp/setup-terraform@v2
-        with:
-          terraform_version: 1.5.0
-      - run: terraform init
-        working-directory: terraform
-      - run: terraform plan -var="project_id=pharma-poc-demo"
-        working-directory: terraform
-      - run: terraform apply -auto-approve -var="project_id=pharma-poc-demo"
-        working-directory: terraform
+    - name: Checkout
+      uses: actions/checkout@v3
+      
+    - name: Setup Terraform
+      uses: hashicorp/setup-terraform@v2
+      with:
+        terraform_version: 1.5.7
+        
+    - name: Setup GCP credentials
+      uses: google-github-actions/auth@v1
+      with:
+        credentials_json: ${{ secrets.GCP_SA_KEY }}
+        
+    - name: Terraform Init
+      run: |
+        cd terraform
+        terraform init
+        
+    - name: Terraform Plan
+      run: |
+        cd terraform
+        terraform plan -out=tfplan
+        
+    - name: Terraform Apply
+      if: github.ref == 'refs/heads/main'
+      run: |
+        cd terraform
+        terraform apply -auto-approve tfplan
+
+  build-and-deploy:
+    name: 'Build and Deploy'
+    needs: terraform
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+      
+    - name: Setup GCP credentials
+      uses: google-github-actions/auth@v1
+      with:
+        credentials_json: ${{ secrets.GCP_SA_KEY }}
+        
+    - name: Configure Docker for GCP
+      run: |
+        gcloud auth configure-docker
+        
+    - name: Build and Push Docker Image
+      run: |
+        docker build -t gcr.io/$PROJECT_ID/pharma-etl:$GITHUB_SHA .
+        docker push gcr.io/$PROJECT_ID/pharma-etl:$GITHUB_SHA
+        
+    - name: Deploy PySpark Jobs
+      run: |
+        gsutil cp pyspark_jobs/*.py gs://$PROJECT_ID-code/pyspark_jobs/
+        
+    - name: Deploy DAGs
+      run: |
+        gsutil cp dags/*.py gs://$PROJECT_ID-composer-dags/dags/

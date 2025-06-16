@@ -1,0 +1,22 @@
+{
+  "name": "drug_analytics",
+  "type": "record", 
+  "namespace": "pharma.gold",
+  "doc": "Analytics-ready drug data - gold layer for business intelligence",
+  "fields": [
+    {"name": "analysis_date", "type": "string", "doc": "Date of analysis"},
+    {"name": "therapeutic_class", "type": "string", "doc": "Therapeutic classification"},
+    {"name": "market_segment", "type": "string", "doc": "Market segment"},
+    {"name": "price_tier", "type": "string", "doc": "Price tier"},
+    {"name": "drug_count", "type": "long", "doc": "Number of drugs in category"},
+    {"name": "avg_price", "type": "double", "doc": "Average price"},
+    {"name": "median_price", "type": "double", "doc": "Median price"},
+    {"name": "price_std_dev", "type": "double", "doc": "Price standard deviation"},
+    {"name": "market_share_pct", "type": "double", "doc": "Market share percentage"},
+    {"name": "avg_competition_index", "type": "double", "doc": "Average competition index"},
+    {"name": "high_risk_count", "type": "long", "doc": "Number of high-risk drugs"},
+    {"name": "quality_score_avg", "type": "double", "doc": "Average data quality score"},
+    {"name": "trend_direction", "type": "string", "doc": "UP/DOWN/STABLE price trend"},
+    {"name": "analysis_timestamp", "type": "long", "doc": "Analysis timestamp"}
+  ]
+}

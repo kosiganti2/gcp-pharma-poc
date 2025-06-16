@@ -1,0 +1,21 @@
+{
+  "name": "cms_drug_raw",
+  "type": "record",
+  "namespace": "pharma.bronze",
+  "doc": "Raw CMS drug data - bronze layer",
+  "fields": [
+    {"name": "ndc_number", "type": "string", "doc": "National Drug Code"},
+    {"name": "labeler_name", "type": "string", "doc": "Drug manufacturer"},
+    {"name": "product_name", "type": "string", "doc": "Product name"},
+    {"name": "generic_name", "type": ["null", "string"], "doc": "Generic drug name"},
+    {"name": "dosage_form", "type": ["null", "string"], "doc": "Tablet, capsule, etc."},
+    {"name": "route", "type": ["null", "string"], "doc": "Administration route"},
+    {"name": "strength", "type": ["null", "string"], "doc": "Drug strength"},
+    {"name": "unit_price", "type": ["null", "double"], "doc": "Price per unit"},
+    {"name": "package_size", "type": ["null", "int"], "doc": "Package size"},
+    {"name": "market_date", "type": ["null", "string"], "doc": "Market entry date"},
+    {"name": "ingestion_timestamp", "type": "long", "doc": "Data ingestion timestamp"},
+    {"name": "source_file", "type": "string", "doc": "Source file name"},
+    {"name": "data_version", "type": "string", "doc": "Data version for tracking"}
+  ]
+}

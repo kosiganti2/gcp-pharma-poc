@@ -1,9 +1,26 @@
-FROM bitnami/spark:3.1.3
+FROM python:3.9-slim
 
-# Create output directory
-RUN mkdir -p /app/output
+# Install system dependencies
+RUN apt-get update && apt-get install -y \
+    default-jdk \
+    curl \
+    wget \
+    && rm -rf /var/lib/apt/lists/*
 
-COPY pyspark_jobs/transform.py /app/transform.py
-COPY input.csv /app/input.csv
+# Set JAVA_HOME
+ENV JAVA_HOME=/usr/lib/jvm/default-java
 
-CMD ["/opt/bitnami/spark/bin/spark-submit", "/app/transform.py"]
+# Install Python dependencies
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Set working directory
+WORKDIR /app
+
+# Copy application code
+COPY pyspark_jobs/ ./pyspark_jobs/
+COPY schemas/ ./schemas/
+COPY config/ ./config/
+
+# Set entrypoint
+ENTRYPOINT ["python", "pyspark_jobs/data_transformer.py"]

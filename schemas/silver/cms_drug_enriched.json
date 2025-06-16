@@ -1,0 +1,23 @@
+{
+  "name": "cms_drug_enriched", 
+  "type": "record",
+  "namespace": "pharma.silver",
+  "doc": "Enriched CMS drug data - silver layer with AI enhancements",
+  "fields": [
+    {"name": "drug_id", "type": "string", "doc": "Generated unique identifier"},
+    {"name": "ndc_number_clean", "type": "string", "doc": "Standardized NDC number"},
+    {"name": "labeler_name_clean", "type": "string", "doc": "Standardized manufacturer name"},
+    {"name": "generic_name_standardized", "type": "string", "doc": "Standardized generic name"},
+    {"name": "therapeutic_class", "type": ["null", "string"], "doc": "AI-derived therapeutic classification"},
+    {"name": "dosage_category", "type": "string", "doc": "LOW/MEDIUM/HIGH/UNKNOWN"},
+    {"name": "price_tier", "type": "string", "doc": "BUDGET/STANDARD/PREMIUM"},
+    {"name": "risk_category", "type": "string", "doc": "AI-assessed risk level"},
+    {"name": "market_segment", "type": "string", "doc": "CONSUMER/HOSPITAL/SPECIALTY"},
+    {"name": "competition_index", "type": "double", "doc": "Market competition score (0-1)"},
+    {"name": "fda_approval_status", "type": ["null", "string"], "doc": "Current FDA status"},
+    {"name": "enrichment_confidence", "type": "double", "doc": "AI confidence score (0-1)"},
+    {"name": "data_quality_score", "type": "double", "doc": "Overall quality assessment (0-1)"},
+    {"name": "processing_timestamp", "type": "long", "doc": "Processing timestamp"},
+    {"name": "enrichment_version", "type": "string", "doc": "AI model version used"}
+  ]
+}
